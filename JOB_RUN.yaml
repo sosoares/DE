@@ -1,0 +1,16 @@
+resources:
+  jobs:
+    Weather_Historization:
+      name: Weather_Historization
+      schedule:
+        quartz_cron_expression: "13 2 18 * * ?"
+        timezone_id: Europe/Budapest
+        pause_status: UNPAUSED
+      tasks:
+        - task_key: Weather_Incremental_Refresh
+          notebook_task:
+            notebook_path: ../src/Weather_Incremental_Refresh_API_Call
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
